@@ -99,3 +99,18 @@ GROUP BY mt.name, month
 ORDER BY mt.name, month
 
 ### 8. Emily wants to segment customers based on the number of rentals and see the count of customers in each segment. Use your SQL skills to get this! Categorize customers based on their rental history as follows: Customers who have had more than 10 rentals are categorized as 'more than 10' . Customers who have had 5 to 10 rentals (inclusive) are categorized as 'between 5 and 10' . Customers who have had fewer than 5 rentals should be categorized as 'fewer than 5' . Calculate the number of customers in each category. Display two columns: rental_count_category (the rental count category) and customer_count (the number of customers in each category)
+
+WITH cte as
+(
+SELECT customer_id,
+count(*) as total_rentals,
+CASE WHEN COUNT(customer_id) > 10 THEN 'more than 10'
+	WHEN COUNT(customer_id) BETWEEN 5 AND 10 THEN 'between 5 and 10'
+    WHEN COUNT(customer_id) < 5 THEN 'fewer than 5' END AS category
+FROM rental
+GROUP BY customer_id
+)
+SELECT category as rental_count_category, count(*) as customer_count
+FROM cte
+GROUP BY category
+order by customer_count;
