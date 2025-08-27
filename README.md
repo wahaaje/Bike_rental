@@ -65,7 +65,7 @@ The membership table has information about individual memberships purchased by c
 - total_paid : The total amount paid for the membership.
 
 
-*** Solutions to all these problems can be found in
-“SOLUTION-Bike_Rental_Case_Study.txt” file
+*** Questions and Solutions to all these problems can be found in
+“Questions and Solution.md” file
 
 
